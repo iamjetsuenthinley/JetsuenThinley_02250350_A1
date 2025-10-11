@@ -3,7 +3,7 @@ from urllib import request, error #Importing request is to request url  and erro
 #1. perfect sum calculator
 def perfect_num_sum_calculator(n,m):
     """Takes parameters 'n' for starting range and 
-    'm' for ending range"""
+    'm' for ending range. Then from n to m+1 it adds all the perfect numbers."""
     def is_perfect(num):
         """This is another function to check if each number
         in the range of perfect_sum_calculator fuction is a perfect number"""
@@ -23,6 +23,9 @@ def perfect_num_sum_calculator(n,m):
 
 #2. weight unit converter
 def weight_unit_conv(w,conv_unit):
+    '''This functions take in 'w' i.e, weight
+    and con_unit that is the conversion unit the User wants.
+    Then the fuction converts them to kilogram or pounds'''
     conv_unit.upper()
     while True:
         if conv_unit=="k":
@@ -36,6 +39,9 @@ def weight_unit_conv(w,conv_unit):
 
 #3. Vowel Counter
 def vowel_counter(s):
+    '''It takes a text of string or strings from user (s), makes all the characters to lowercase.
+    Then for the text it counts as many vowels it gets from the vowel list.
+    Finaly the count of vowel is summed and returned'''
     vowels=['a','e','i','o','u']
     count={letter: s.lower().count(letter.lower()) for letter in vowels}
     vowel_counts=sum(count.values())
@@ -43,12 +49,18 @@ def vowel_counter(s):
 
 #4. Average and Range Finder
 def avg_range(lth,lst):
+    '''It takes a list(lst) of numbers given by user, for which the total number of
+    numbers(lth) are also determined by the user. Then it returns Average and Range'''
     avg=sum(lst)/lth
     ran=max(lst)-min(lst)
     print(f"Average: {avg} \nRange: {ran}")
 
 #5. String Reverser and Word count
 def str_rev_and_wrd_count(text):
+    '''This function takes a text from user (text)
+    The text is then stripped so that the spaces in the front and end are erased for cleanniness
+    Then this tripped text is split by spaces put into words list and number of words are counted using len
+    Finaly the stipped text is read from the end to start since the whole text is read from start to end but in reverse i.e, -1 steps'''
     strip_text=text.strip()
     words=strip_text.split()
     word_count=len(words)
@@ -56,6 +68,9 @@ def str_rev_and_wrd_count(text):
     print(f"{text} : {rev_text}.\nWord Count: {word_count}")
 
 #6. Specific Word Counter
+'''This fucntion is if the User is online and can take a url
+The fucton takes the given url and opens them  using the module urllib
+Then it counts how many of each word in word_list is present in the url'''
 def specific_wrd_counter(url):
     respond=request.urlopen(url)
     read_text=respond.read().decode('utf-8').lower()
@@ -66,6 +81,9 @@ def specific_wrd_counter(url):
         count = words.count(word)
         print(f"\'{word}\': {count}, ")
 
+'''This function is if the User is offline
+The function uses 'with open' to open the same file as the url which I have already saved as local.txt
+Then it  counts how many of each word in word_list is present in the file'''
 def specific_wrd_counter_offline(file):
     with open(file,'r',encoding='utf-8') as f:
         read_text=f.read().lower()
